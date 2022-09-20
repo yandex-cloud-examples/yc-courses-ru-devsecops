@@ -1,0 +1,7 @@
+Flask
+pytest
+flask-appbuilder==3.2.3
+markupsafe==2.0.1
+wtforms==2.3.3
+psycopg2-binary
+bootstrap-flask

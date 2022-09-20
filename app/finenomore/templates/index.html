@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block styles %}
+        {{ bootstrap.load_css() }}
+        {% endblock %}
+
+        <title>Fine No More</title>
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        <div class="px-4 py-5 my-5 text-center">
+          <h1 class="display-5 fw-bold">Все штрафы &mdash; как на ладони</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Уникальный сервис: все автомобильные грехи собраны в одном месте.<br />Для проверки нужен лишь гос. номер.</p>
+          </div>
+        </div>
+        <div class="px-4 text-center">
+          <div class="col-lg-3 mx-auto">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <div class="input-group mb-3">
+                <!-- <input id="number" style="text-transform: uppercase" maxlength="9" type="text" class="form-control" placeholder="А000АА77"> -->
+                <input id="number" type="text" class="form-control" placeholder="А000АА77">
+                <span class="input-group-text">RUS</span>
+                <button class="btn btn-outline-secondary" type="button" id="submit">Проверить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="target" class="offset-lg-2 col-lg-8 px-4 py-5 my-5 d-none">
+          
+        </div>
+        
+        <div class="offset-lg-2 col-lg-8 px-4 py-5 my-5 d-none">
+          <div id="sourceError" class="alert alert-danger" role="alert">Произошла ошибка выполнения запроса:&nbsp;</div>
+
+          <div id="sourceEmpty" class="alert alert-success" role="alert">Штрафов не найдено, прекрасно!</div>
+
+          <a id="sourceLink" href="/number/?n=">Ссылка на результаты проверки</a>
+
+          <table id="sourceTable" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Идентификатор</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Причина</th>
+                <th scope="col">Сумма</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="sourceRow" class="d-none">
+                <td class="id">id</td>
+                <td class="date">date</td>
+                <td class="reason">reason</td>
+                <td class="sum">sum</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {% endblock %}
+
+        {% block scripts %}
+            {{ bootstrap.load_js() }}
+            <script src="{{ url_for('static', filename='main.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

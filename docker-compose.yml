@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: LTAIsupersecretkeyfordat
+      POSTGRES_USER: finenomore
+      POSTGRES_DB: finenomore
+      POSTGRES_HOST_AUTH_METHOD: md5
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+  finenomore:
+    build: .
+    ports:
+      - 80:80

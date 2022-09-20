@@ -1,0 +1,6 @@
+services:
+  finenomore:
+    volumes:
+      - ./app:/app
+    environment:
+      - FLASK_DEBUG=1
