@@ -121,4 +121,3 @@ spec:
   selector:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  
