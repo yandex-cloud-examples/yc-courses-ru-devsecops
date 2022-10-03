@@ -1,3 +1,5 @@
+namespace: finenomore
+
 postgres:
   name: postgres
   image: postgres:14-alpine
@@ -7,6 +9,7 @@ postgres:
     app: postgres
 
 finenomore:
+  imagePullSecrets: []
   name: finenomore
   image: maniaque/finenomore:1.0
   labels:
@@ -26,7 +29,7 @@ finenomore:
 #   # Overrides the image tag whose default is the chart appVersion.
 #   tag: ""
 
-# imagePullSecrets: []
+
 # nameOverride: ""
 # fullnameOverride: ""
 

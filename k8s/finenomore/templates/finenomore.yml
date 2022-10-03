@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.finenomore.name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ default .Release.Namespace .Values.namespace | quote }}
 spec:
   replicas: 1
   selector:
@@ -18,6 +18,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
+      {{- if .Values.finenomore.imagePullSecrets }}
+      imagePullSecrets:
+        - name: {{ .Values.finenomore.imagePullSecrets }}
+      {{- end }}
       containers:
         - name: {{ .Values.finenomore.name }}
           image: {{ .Values.finenomore.image }}
@@ -29,7 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.finenomore.name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ default .Release.Namespace .Values.namespace | quote }}
 spec:
   type: ClusterIP
   ports:
@@ -44,7 +48,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Values.finenomore.name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ default .Release.Namespace .Values.namespace | quote }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
