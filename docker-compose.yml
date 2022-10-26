@@ -13,4 +13,4 @@ services:
   finenomore:
     build: .
     ports:
-      - 80:80
+      - 8090:80
