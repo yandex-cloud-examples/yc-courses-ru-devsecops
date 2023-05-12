@@ -3,7 +3,8 @@ FROM python:3.6.12-slim-stretch
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 
-RUN apt-get update && apt-get install -y locales ca-certificates --no-install-recommends \
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list \
+    && apt-get update && apt-get install -y locales ca-certificates --no-install-recommends \
     && printf 'en_US.UTF-8 UTF-8\n' >> /etc/locale.gen && locale-gen \
     && rm -rf /var/cache/apt/archives/*
 
